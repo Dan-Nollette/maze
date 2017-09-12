@@ -1,0 +1,6 @@
+<p>You find yourself in a room that is part of a maze</p>
+<p>What do?</p>
+
+<% @moves.each do |move|%>
+  <h4><a href="/maze_room/"<%= move[1].row.to_s + "/" + move[1].column.to_s %>>move <%= move[0] %></a></h4>
+<% end %>

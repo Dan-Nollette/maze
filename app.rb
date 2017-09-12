@@ -52,4 +52,23 @@ post('/maze_room') do
   # @column = Room.find(params[:column])
   erb(:maze_room)
 end
-post('/maze_room/:row/:column') do
+
+get('/maze_room/:row/:column') do
+  @room = Room.find(params[:row], params[:column])
+  @moves = []
+  if @room.left
+    @moves.push(["left", Room.find(@room.row, @room.column + 1)])
+  end
+  if @room.right
+    @moves.push(["right", Room.find(@room.row, @room.column - 1)])
+  end
+  if @room.up
+    @moves.push(["up", Room.find(@room.row + 1, @room.column)])
+  end
+  if @room.down
+    @moves.push(["down", Room.find(@room.row - 1, @room.column)])
+  end
+  # @row = Room.find(params[:row])
+  # @column = Room.find(params[:column])
+  erb(:maze_room)
+end
